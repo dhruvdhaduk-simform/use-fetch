@@ -14,25 +14,6 @@ interface MovieGridProps {
     movies: Array<Movie>;
 }
 
-// eslint-disable-next-line
-export async function fetchMovies(
-    q: string,
-    signal?: AbortSignal
-): Promise<Array<Movie>> {
-    const response = await fetch(
-        `https://imdb.iamidiotareyoutoo.com/search?q=${encodeURIComponent(q)}`,
-        { signal }
-    );
-
-    if (!response.ok) {
-        throw new Error('Unexpected error occured while fetching movies.');
-    }
-
-    const json = await response.json();
-
-    return json.description;
-}
-
 export function MovieGrid({ movies }: MovieGridProps) {
     if (!movies.length) {
         return (
